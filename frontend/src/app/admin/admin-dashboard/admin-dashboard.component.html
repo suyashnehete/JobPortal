@@ -1,0 +1,124 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex align-items-center mb-4">
+        <i class="fas fa-tachometer-alt me-3 text-primary fs-3"></i>
+        <h2 class="mb-0 text-primary fw-bold">Admin Dashboard</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Users Section -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-users me-2"></i>
+            <h4 class="mb-0">All Users</h4>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th class="fw-semibold">Name</th>
+                  <th class="fw-semibold">Email</th>
+                  <th class="fw-semibold">Role</th>
+                  <th class="fw-semibold text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of users">
+                  <td class="align-middle">
+                    <div class="d-flex align-items-center">
+                      <div
+                        class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2"
+                        style="width: 35px; height: 35px; font-size: 14px"
+                      >
+                        {{ u.name.charAt(0).toUpperCase() }}
+                      </div>
+                      {{ u.name }}
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <i class="fas fa-envelope me-2 text-muted"></i>
+                    {{ u.email }}
+                  </td>
+                  <td class="align-middle">
+                    <span class="badge bg-info text-dark">{{ u.role }}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button
+                      class="btn btn-outline-danger btn-sm"
+                      (click)="deleteUser(u.id)"
+                    >
+                      <i class="fas fa-trash me-1"></i>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs Section -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-briefcase me-2"></i>
+            <h4 class="mb-0">All Jobs</h4>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th class="fw-semibold">Title</th>
+                  <th class="fw-semibold">Location</th>
+                  <th class="fw-semibold">Employer</th>
+                  <th class="fw-semibold text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let j of jobs">
+                  <td class="align-middle">
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-briefcase me-2 text-primary"></i>
+                      {{ j.title }}
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <i class="fas fa-map-marker-alt me-2 text-muted"></i>
+                    {{ j.location }}
+                  </td>
+                  <td class="align-middle">
+                    <i class="fas fa-building me-2 text-muted"></i>
+                    {{ j.employer }}
+                  </td>
+                  <td class="align-middle text-center">
+                    <button
+                      class="btn btn-outline-danger btn-sm"
+                      (click)="deleteJob(j.id)"
+                    >
+                      <i class="fas fa-trash me-1"></i>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

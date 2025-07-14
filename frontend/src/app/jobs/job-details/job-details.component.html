@@ -1,0 +1,96 @@
+<div class="container mt-4" *ngIf="job">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h2 class="fw-bold text-primary mb-2">{{ job.title }}</h2>
+              <div class="text-muted mb-3">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                  <span class="fs-6">{{ job.location }}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-currency-dollar me-2 text-success"></i>
+                  <span class="fs-6 fw-semibold text-success">{{ job.salary || 'Salary not specified' }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-end">
+              <span class="badge bg-primary fs-6 px-3 py-2">
+                <i class="bi bi-briefcase me-1"></i>Full Time
+              </span>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="mb-4">
+            <h5 class="fw-bold text-dark mb-3">
+              <i class="bi bi-file-text me-2 text-primary"></i>Job Description
+            </h5>
+            <div class="text-muted lh-lg">
+              {{ job.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <!-- Job Seeker: Apply Form -->
+      <div *ngIf="userRole === 'seeker'" class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h5 class="fw-bold text-primary mb-3">
+            <i class="bi bi-send me-2"></i>Apply for this Position
+          </h5>
+
+          <div *ngIf="applySuccess" class="alert alert-success border-0 d-flex align-items-center mb-3">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <span>Application submitted successfully!</span>
+          </div>
+
+          <div *ngIf="applyError" class="alert alert-danger border-0 d-flex align-items-center mb-3">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span>{{ applyError }}</span>
+          </div>
+
+          <form>
+            <div class="mb-3">
+              <label for="resumeUrl" class="form-label fw-semibold">
+                <i class="bi bi-file-earmark-pdf me-1"></i>Resume URL
+              </label>
+              <input 
+                [(ngModel)]="resumeUrl" 
+                id="resumeUrl"
+                name="resumeUrl"
+                class="form-control form-control-lg" 
+                placeholder="Paste your resume URL (Google Drive, Dropbox, etc.)"
+              >
+              <div class="form-text">
+                <i class="bi bi-info-circle me-1"></i>
+                Make sure your resume is publicly accessible
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-success btn-lg w-100 py-3 fw-semibold" (click)="apply()">
+              <i class="bi bi-send me-2"></i>Submit Application
+            </button>
+          </form>
+
+          <div class="mt-3 p-3 bg-light rounded">
+            <h6 class="fw-semibold mb-2">
+              <i class="bi bi-lightbulb me-1 text-warning"></i>Application Tips
+            </h6>
+            <ul class="small text-muted mb-0">
+              <li>Upload your resume to Google Drive or Dropbox</li>
+              <li>Make sure the sharing settings are set to "Anyone with the link"</li>
+              <li>Double-check your resume URL before submitting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

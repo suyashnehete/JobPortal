@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <i class="bi bi-plus-circle-fill text-success fs-1 mb-3"></i>
+            <h2 class="fw-bold text-primary">Post a New Job</h2>
+            <p class="text-muted">Find the perfect candidate for your open position</p>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger border-0 d-flex align-items-center mb-4">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span>{{ error }}</span>
+          </div>
+
+          <form (ngSubmit)="postJob()">
+            <div class="mb-4">
+              <label for="title" class="form-label fw-semibold">
+                <i class="bi bi-briefcase me-1"></i>Job Title *
+              </label>
+              <input 
+                [(ngModel)]="title" 
+                name="title" 
+                id="title"
+                class="form-control form-control-lg" 
+                placeholder="e.g., Senior Software Engineer, Marketing Manager" 
+                required
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="description" class="form-label fw-semibold">
+                <i class="bi bi-file-text me-1"></i>Job Description *
+              </label>
+              <textarea 
+                [(ngModel)]="description" 
+                name="description" 
+                id="description"
+                class="form-control" 
+                placeholder="Describe the role, responsibilities, requirements, and what makes this opportunity great..." 
+                rows="6" 
+                required
+              ></textarea>
+              <div class="form-text">
+                <i class="bi bi-info-circle me-1"></i>
+                Include key responsibilities, required skills, and company culture
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="salary" class="form-label fw-semibold">
+                  <i class="bi bi-currency-dollar me-1"></i>Salary Range
+                </label>
+                <input 
+                  [(ngModel)]="salary" 
+                  name="salary" 
+                  id="salary"
+                  class="form-control form-control-lg" 
+                  placeholder="e.g., $60,000 - $80,000 per year"
+                >
+                <div class="form-text">Optional - helps attract qualified candidates</div>
+              </div>
+              <div class="col-md-6">
+                <label for="location" class="form-label fw-semibold">
+                  <i class="bi bi-geo-alt me-1"></i>Location *
+                </label>
+                <input 
+                  [(ngModel)]="location" 
+                  name="location" 
+                  id="location"
+                  class="form-control form-control-lg" 
+                  placeholder="e.g., New York, NY or Remote" 
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg py-3 fw-semibold">
+                <i class="bi bi-plus-circle me-2"></i>Post Job Opening
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-4 p-4 bg-light rounded">
+            <h6 class="fw-semibold mb-3">
+              <i class="bi bi-lightbulb text-warning me-2"></i>Tips for a Great Job Posting
+            </h6>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="small text-muted mb-0">
+                  <li class="mb-1">Use a clear, specific job title</li>
+                  <li class="mb-1">Include required skills and experience</li>
+                  <li class="mb-1">Mention company benefits and culture</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="small text-muted mb-0">
+                  <li class="mb-1">Be transparent about salary range</li>
+                  <li class="mb-1">Specify remote/hybrid options</li>
+                  <li class="mb-1">Keep descriptions concise but detailed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

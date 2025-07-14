@@ -1,0 +1,84 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">
+      <i class="bi bi-building me-2"></i>My Posted Jobs
+    </h2>
+    <span class="badge bg-primary fs-6">{{ jobs.length }} Job{{ jobs.length !== 1 ? 's' : '' }}</span>
+  </div>
+
+  <div *ngIf="jobs.length === 0" class="alert alert-info border-0 shadow-sm">
+    <div class="d-flex align-items-center">
+      <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+      <div>
+        <h6 class="mb-1">No jobs posted yet</h6>
+        <p class="mb-0 text-muted">Start by posting your first job to find great candidates.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4 shadow-sm border-0" *ngFor="let job of jobs">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h5 class="fw-bold text-dark mb-2">{{ job.title }}</h5>
+          <div class="text-muted">
+            <div class="d-flex align-items-center mb-1">
+              <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+              <span>{{ job.location }}</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-calendar3 me-2 text-primary"></i>
+              <span>Posted on {{ job.created_at }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-end">
+          <button class="btn btn-outline-primary btn-sm me-2" (click)="viewApplicants(job.id)">
+            <i class="bi bi-people me-1"></i>View Applicants
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteJob(job.id)">
+            <i class="bi bi-trash me-1"></i>Delete
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="applicants[job.id]" class="mt-4">
+        <div class="d-flex align-items-center mb-3">
+          <h6 class="fw-semibold text-primary mb-0">
+            <i class="bi bi-people-fill me-2"></i>Applicants
+          </h6>
+          <span class="badge bg-primary ms-2">{{ applicants[job.id].length }}</span>
+        </div>
+        
+        <div *ngIf="applicants[job.id].length === 0" class="alert alert-light border">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-inbox me-2 text-muted"></i>
+            <span class="text-muted">No applicants yet for this position.</span>
+          </div>
+        </div>
+
+        <div *ngFor="let a of applicants[job.id]" class="card border-start border-primary border-4 mb-3">
+          <div class="card-body p-3">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-person-circle text-primary me-2 fs-5"></i>
+                  <h6 class="fw-semibold mb-0">{{ a.seeker_name }}</h6>
+                </div>
+                <div class="d-flex align-items-center text-muted">
+                  <i class="bi bi-envelope me-2"></i>
+                  <span>{{ a.seeker_email }}</span>
+                </div>
+              </div>
+              <div class="col-md-4 text-end">
+                <a [href]="a.resume_url" target="_blank" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-file-earmark-pdf me-1"></i>View Resume
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
